@@ -1,4 +1,5 @@
 #include <cassert>
+#include <iostream>
 
 #include <SDL.h>
 
@@ -127,13 +128,19 @@ namespace SnakeGame {
         assert(output.size() == 4);
 
         auto maxIndex = 0;
-        auto maxVal = NeuralNetwork::Value{ 0 };
+        auto maxVal = output[0];
         for (auto i = 1; i != output.size(); ++i) {
             if (output[i] > maxVal) {
                 maxVal = output[i];
                 maxIndex = i;
             }
         }
+
+        /*std::cout << "Result from network: "
+            << output[0] << ", "
+            << output[1] << ", "
+            << output[2] << ", "
+            << output[3] << std::endl;*/
 
         switch (maxIndex) {
             case 0: return UP;

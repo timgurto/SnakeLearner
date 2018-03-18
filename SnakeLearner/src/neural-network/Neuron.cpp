@@ -29,7 +29,10 @@ namespace NeuralNetwork {
     }
 
     double Neuron::sigmoid(double raw) {
-        return 1.0 / (1.0 + exp(raw));
+        auto result = 1.0 / (1.0 + exp(-raw));
+        assert(result >= 0.0);
+        assert(result <= 1.0);
+        return result;
     }
 
     Neuron::Neuron(size_t previousColumnHeight){

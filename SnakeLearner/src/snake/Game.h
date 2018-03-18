@@ -30,6 +30,7 @@ namespace SnakeGame {
         Coords _egg{ 5, 5 };
 
         const NeuralNetwork::Network * _network{ nullptr };
+        NeuralNetwork::Values compileGameStateIntoInputVector() const;
         
         bool isGameOver() const;
 

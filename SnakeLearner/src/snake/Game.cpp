@@ -71,6 +71,13 @@ namespace SnakeGame {
         SDL_RenderPresent(renderer);
     }
 
+    NeuralNetwork::Values Game::compileGameStateIntoInputVector() const {
+        auto ret = NeuralNetwork::Values{};
+        for (auto i = 0; i != 400; ++i)
+            ret.push_back(0.5);
+        return ret;
+    }
+
     bool Game::isGameOver() const {
         if (_snake.hasCollidedWithSelf())
             return true;
@@ -93,7 +100,10 @@ namespace SnakeGame {
     Command Game::getCommandFromNetwork(const Game &game) {
         assert(game._network);
         auto &network = *game._network;
-        auto output = network.calculate({});
+
+        auto input = game.compileGameStateIntoInputVector();
+
+        auto output = network.calculate(input);
         assert(output.size() == 4);
 
         auto maxIndex = 0;

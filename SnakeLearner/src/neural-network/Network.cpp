@@ -24,9 +24,23 @@ namespace NeuralNetwork {
     Values NeuralNetwork::Network::calculate(Values input) const {
         assert(input.size() == _inputSize);
 
+        // Inputs -> first column of neurons
+        auto it = _columns.begin();
+        for (auto &neuron : *it)
+            neuron.calculate(input);
+
+        auto *previousColumn = &*it;
+        ++it;
+        for (; it != _columns.end(); ++it) {
+            for (auto &neuron : *it)
+                neuron.calculate(*previousColumn);
+            previousColumn = &*it;
+        }
+
         auto ret = Values{};
-        for (auto i = 0; i != 4; ++i)
-            ret.push_back(1.0 * rand() / RAND_MAX);
+        const auto &lastColumn = _columns.back();
+        for (auto &neuron : lastColumn)
+            ret.push_back(neuron.output);
         return ret;
     }
 

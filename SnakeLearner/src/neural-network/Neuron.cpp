@@ -1,6 +1,36 @@
+#include <cassert>
+#include <cmath>
+
 #include "Neuron.h"
 
 namespace NeuralNetwork {
+    void Neuron::calculate(const Column & input) const {
+        auto sum = 0.0;
+        assert(input.size() == weights.size());
+
+        for (auto i = 0; i != input.size(); ++i)
+            sum += weights[i] * input[i].output;
+
+        sum -= bias;
+
+        output = sigmoid(sum);
+    }
+
+    void Neuron::calculate(const Values & input) const {
+        auto sum = 0.0;
+        assert(input.size() == weights.size());
+
+        for (auto i = 0; i != input.size(); ++i)
+            sum += input[i];
+
+        sum -= bias;
+
+        output = sigmoid(sum);
+    }
+
+    double Neuron::sigmoid(double raw) {
+        return 1.0 / (1.0 + exp(raw));
+    }
 
     Neuron::Neuron(size_t previousColumnHeight){
         for (auto i = 0; i != previousColumnHeight; ++i)

@@ -4,6 +4,6 @@
 
 int main() {
 
-    auto score = Snake::playAsHuman();
+    auto score = SnakeGame::playAsHuman();
     std::cout << score << std::endl;
 }

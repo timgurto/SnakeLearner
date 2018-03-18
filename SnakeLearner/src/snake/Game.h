@@ -3,7 +3,9 @@
 struct SDL_Renderer;
 struct SDL_Window;
 
-namespace Snake {
+#include "Snake.h"
+
+namespace SnakeGame {
     static const int
         GRID_SIZE{ 20 },
         CELL_SIZE{ 5 };
@@ -15,7 +17,10 @@ namespace Snake {
         Game();
         ~Game();
 
+        void render();
+
     private:
+        Snake _snake;
 
         SDL_Window *_window{ nullptr };
         SDL_Renderer *_renderer{ nullptr };

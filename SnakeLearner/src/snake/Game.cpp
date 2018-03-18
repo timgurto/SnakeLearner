@@ -6,15 +6,11 @@
 #include "SnakeGame.h"
 #include "../neural-network/Network.h"
 
+extern SDL_Renderer *renderer;
+
 namespace SnakeGame {
 
     Game::Game(GetCommandFunction getCommandFunction) {
-        SDL_Init(SDL_INIT_VIDEO);
-
-        const auto WIN_SIZE = GRID_SIZE * CELL_SIZE;
-        _window = SDL_CreateWindow("Snake", 10, 20, WIN_SIZE, WIN_SIZE, SDL_WINDOW_SHOWN);
-        _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
-
         _getNextCommand = getCommandFunction;
     }
 
@@ -26,12 +22,6 @@ namespace SnakeGame {
         auto game = Game(&getCommandFromNetwork);
         game._network = &network;
         return game;
-    }
-
-    Game::~Game() {
-        SDL_DestroyRenderer(_renderer);
-        SDL_DestroyWindow(_window);
-        SDL_Quit();
     }
 
     void Game::loop() {
@@ -66,19 +56,19 @@ namespace SnakeGame {
     }
 
     void Game::render() {
-        SDL_SetRenderDrawColor(_renderer, 53, 127, 81, 255);
-        SDL_RenderClear(_renderer);
+        SDL_SetRenderDrawColor(renderer, 53, 127, 81, 255);
+        SDL_RenderClear(renderer);
 
-        _snake.render(_renderer);
+        _snake.render(renderer);
 
-        SDL_SetRenderDrawColor(_renderer, 249, 241, 199, 255);
+        SDL_SetRenderDrawColor(renderer, 249, 241, 199, 255);
         auto eggRect = SDL_Rect{};
         eggRect.x = _egg.x * CELL_SIZE + 1;
         eggRect.y = _egg.y * CELL_SIZE + 1;
         eggRect.w = eggRect.h = CELL_SIZE - 2;
-        SDL_RenderFillRect(_renderer, &eggRect);
+        SDL_RenderFillRect(renderer, &eggRect);
 
-        SDL_RenderPresent(_renderer);
+        SDL_RenderPresent(renderer);
     }
 
     bool Game::isGameOver() const {

@@ -14,7 +14,6 @@ namespace SnakeGame {
     public:
         static Game RandomGame();
         static Game NetworkGame(const NeuralNetwork::Network &network);
-        ~Game();
 
         void loop();
         void update(Command command);
@@ -40,9 +39,6 @@ namespace SnakeGame {
         static Command getRandomCommand(const Game &game);
         static Command getCommandFromUser(const Game &game);
         static Command getCommandFromNetwork(const Game &game);
-
-        SDL_Window *_window{ nullptr };
-        SDL_Renderer *_renderer{ nullptr };
     };
 
 }

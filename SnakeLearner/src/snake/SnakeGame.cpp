@@ -2,8 +2,8 @@
 #include "Game.h"
 
 int SnakeGame::playAsHuman() {
-    Game g{};
-    g.render();
+    auto game = Game::RandomGame();
+    game.render();
     while (true);
     return 0;
 }

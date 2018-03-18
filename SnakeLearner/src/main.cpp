@@ -14,15 +14,12 @@ int main() {
     window = SDL_CreateWindow("Snake", 10, 20, WIN_SIZE, WIN_SIZE, SDL_WINDOW_SHOWN);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-
-    auto game = SnakeGame::Game::RandomGame();
-    game.loop();
-    std::cout << game.score() << std::endl;
-
-    auto network = NeuralNetwork::Network{{400, 12, 12, 4}};
-    game = SnakeGame::Game::NetworkGame(network);
-    game.loop();
-    std::cout << game.score() << std::endl;
+    for (auto i = 0; i != 500; ++i) {
+        auto network = NeuralNetwork::Network{ {400, 12, 12, 4} };
+        auto game = SnakeGame::Game::NetworkGame(network);
+        game.loop();
+        std::cout << game.score() << std::endl;
+    }
 
 
     SDL_DestroyRenderer(renderer);

@@ -36,7 +36,7 @@ namespace SnakeGame {
 
             ++_score;
 
-            SDL_Delay(200);
+            SDL_Delay(10);
         }
     }
 

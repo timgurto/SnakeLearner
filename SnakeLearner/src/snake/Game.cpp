@@ -1,6 +1,7 @@
 #include <SDL.h>
 
 #include "Game.h"
+#include "SnakeGame.h"
 
 namespace SnakeGame {
 
@@ -26,12 +27,4 @@ namespace SnakeGame {
 
         SDL_RenderPresent(_renderer);
     }
-
-    int playAsHuman() {
-        Game g{};
-        g.render();
-        while (true);
-        return 0;
-    }
-
 }

@@ -6,11 +6,6 @@ struct SDL_Window;
 #include "Snake.h"
 
 namespace SnakeGame {
-    static const int
-        GRID_SIZE{ 20 },
-        CELL_SIZE{ 5 };
-
-    int playAsHuman();
 
     class Game {
     public:

@@ -119,10 +119,12 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\snake\Game.cpp" />
     <ClCompile Include="src\snake\Snake.cpp" />
+    <ClCompile Include="src\snake\SnakeGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\snake\Game.h" />
     <ClInclude Include="src\snake\Snake.h" />
+    <ClInclude Include="src\snake\SnakeGame.h" />
     <ClInclude Include="src\snake\util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

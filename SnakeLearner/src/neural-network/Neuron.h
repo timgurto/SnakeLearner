@@ -21,6 +21,8 @@ namespace NeuralNetwork {
         void calculate(const Column &input) const;
         void calculate(const Values &input) const; // For the first column of neurons
 
+        void mutate();
+
         static double sigmoid(double raw);
 
         Neuron(size_t previousColumnHeight);

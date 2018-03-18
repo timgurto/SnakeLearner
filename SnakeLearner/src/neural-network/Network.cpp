@@ -44,4 +44,10 @@ namespace NeuralNetwork {
         return ret;
     }
 
+    void Network::mutate() {
+        for (auto &column : _columns)
+            for (auto &neuron : column)
+                neuron.mutate();
+    }
+
 }

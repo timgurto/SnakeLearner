@@ -9,15 +9,24 @@
 SDL_Window *window{ nullptr };
 SDL_Renderer *renderer{ nullptr };
 
-int main() {
+void init() {
     SDL_Init(SDL_INIT_VIDEO);
     const auto WIN_SIZE = SnakeGame::GRID_SIZE * SnakeGame::CELL_SIZE;
     window = SDL_CreateWindow("Snake", 10, 20, WIN_SIZE, WIN_SIZE, SDL_WINDOW_SHOWN);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+}
 
-    static const int POPULATION_SIZE = 10000;
+void cleanup() {
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+}
+
+int main() {
+    init();
 
     // Create first generation randomly
+    static const int POPULATION_SIZE = 10000;
     auto generation = 1;
     std::vector<NeuralNetwork::Network> population;
     for (auto i = 0; i != POPULATION_SIZE; ++i)
@@ -60,10 +69,6 @@ int main() {
         ++generation;
     }
 
-
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-
+    cleanup();
     return 0;
 }

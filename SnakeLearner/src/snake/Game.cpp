@@ -36,6 +36,7 @@ namespace SnakeGame {
                 break;
 
             ++_score;
+            ++_numTurns;
 
             SDL_Delay(10);
         }

@@ -126,7 +126,6 @@
   <ItemGroup>
     <ClInclude Include="src\neural-network\Network.h" />
     <ClInclude Include="src\neural-network\NeuralNetwork.h" />
-    <ClInclude Include="src\Optional.h" />
     <ClInclude Include="src\snake\Game.h" />
     <ClInclude Include="src\snake\Snake.h" />
     <ClInclude Include="src\snake\SnakeGame.h" />

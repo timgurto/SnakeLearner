@@ -91,8 +91,8 @@ namespace SnakeGame {
         return UP;
     }
     Command Game::getCommandFromNetwork(const Game &game) {
-        assert(game._network.hasValue());
-        auto &network = *game._network.value();
+        assert(game._network);
+        auto &network = *game._network;
         auto output = network.calculate({});
         assert(output.size() == 4);
 

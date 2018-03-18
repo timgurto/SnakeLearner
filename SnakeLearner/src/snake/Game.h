@@ -5,7 +5,6 @@ struct SDL_Window;
 
 #include "Snake.h"
 #include "SnakeGame.h"
-#include "../Optional.h"
 #include "../neural-network/Network.h"
 
 namespace SnakeGame {
@@ -30,7 +29,7 @@ namespace SnakeGame {
 
         Coords _egg{ 5, 5 };
 
-        Optional<const NeuralNetwork::Network *> _network;
+        const NeuralNetwork::Network * _network{ nullptr };
         
         bool isGameOver() const;
 

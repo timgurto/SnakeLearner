@@ -13,6 +13,18 @@ namespace SnakeGame {
             _body.push_back({ STARTING_POS.x - i, STARTING_POS.y });
     }
 
+    void Snake::move(Command command) {
+        auto newFront = _body.front();
+        switch (command) {
+        case UP: --newFront.y; break;
+        case DOWN: ++newFront.y; break;
+        case LEFT: --newFront.x; break;
+        case RIGHT: ++newFront.x; break;
+        }
+        _body.pop_back();
+        _body.push_front(newFront);
+    }
+
     void Snake::render(SDL_Renderer * renderer) {
         for (auto &segment : _body) {
             auto segmentRect = SDL_Rect{};

@@ -3,7 +3,6 @@
 
 int SnakeGame::playAsHuman() {
     auto game = Game::RandomGame();
-    game.render();
-    while (true);
+    game.loop();
     return 0;
 }

@@ -125,7 +125,6 @@
     <ClInclude Include="src\snake\Game.h" />
     <ClInclude Include="src\snake\Snake.h" />
     <ClInclude Include="src\snake\SnakeGame.h" />
-    <ClInclude Include="src\snake\util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

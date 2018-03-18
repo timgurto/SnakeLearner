@@ -35,9 +35,6 @@
     <ClInclude Include="src\snake\Snake.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\snake\util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\snake\SnakeGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -25,6 +25,21 @@ namespace SnakeGame {
         SDL_Quit();
     }
 
+    void Game::loop() {
+        while (true) {
+            render();
+
+            auto command = _getNextCommand();
+            update(command);
+
+            SDL_Delay(500);
+        }
+    }
+
+    void Game::update(Command command) {
+        _snake.move(command);
+    }
+
     void Game::render() {
         SDL_SetRenderDrawColor(_renderer, 53, 127, 81, 255);
         SDL_RenderClear(_renderer);

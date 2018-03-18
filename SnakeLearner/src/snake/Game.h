@@ -13,6 +13,9 @@ namespace SnakeGame {
         static Game RandomGame();
         ~Game();
 
+        void loop();
+
+        void update(Command command);
         void render();
 
     private:

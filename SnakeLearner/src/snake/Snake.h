@@ -2,7 +2,7 @@
 
 #include <list>
 
-#include "util.h"
+#include "SnakeGame.h"
 
 struct SDL_Renderer;
 
@@ -12,6 +12,7 @@ namespace SnakeGame {
     public:
         Snake();
 
+        void move(Command command);
         void render(SDL_Renderer *renderer);
 
     private:

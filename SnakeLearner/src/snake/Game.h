@@ -2,9 +2,12 @@
 
 namespace Snake {
 
-    int playAsHuman() { return 0; }
+    int playAsHuman();
 
     class Game {
+    public:
+        Game();
+        ~Game();
     };
 
 }

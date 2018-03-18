@@ -120,12 +120,14 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\neural-network\Network.cpp" />
+    <ClCompile Include="src\neural-network\Neuron.cpp" />
     <ClCompile Include="src\snake\Game.cpp" />
     <ClCompile Include="src\snake\Snake.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\neural-network\Network.h" />
     <ClInclude Include="src\neural-network\NeuralNetwork.h" />
+    <ClInclude Include="src\neural-network\Neuron.h" />
     <ClInclude Include="src\snake\Game.h" />
     <ClInclude Include="src\snake\Snake.h" />
     <ClInclude Include="src\snake\SnakeGame.h" />

@@ -19,7 +19,7 @@ int main() {
     game.loop();
     std::cout << game.score() << std::endl;
 
-    auto network = NeuralNetwork::Network{};
+    auto network = NeuralNetwork::Network{{400, 12, 12, 4}};
     game = SnakeGame::Game::NetworkGame(network);
     game.loop();
     std::cout << game.score() << std::endl;

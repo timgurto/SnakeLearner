@@ -5,6 +5,15 @@
 #include "Neuron.h"
 
 namespace NeuralNetwork {
+
+    Neuron::Neuron(size_t previousColumnHeight){
+        this->previousColumnHeight = previousColumnHeight;
+        for (auto i = 0; i != previousColumnHeight; ++i)
+            weights.push_back(1.0 * rand() / RAND_MAX );
+
+        bias = 1.0 * rand() / RAND_MAX * previousColumnHeight;
+    }
+
     void Neuron::calculate(const Column & input) const {
         auto sum = 0.0;
         assert(input.size() == weights.size());
@@ -30,7 +39,7 @@ namespace NeuralNetwork {
     }
 
     void Neuron::mutate() {
-        static auto weightDist = std::normal_distribution<Weight>{ 0, 0.341345 };
+        static auto weightDist = std::normal_distribution<Weight>{ 0, 0.02 };
         static auto engine = std::default_random_engine{};
 
         // Weights
@@ -44,7 +53,7 @@ namespace NeuralNetwork {
         }
 
         // Bias
-        auto biasDist = std::normal_distribution<Bias>{ 0, sqrt(bias) };
+        auto biasDist = std::normal_distribution<Bias>{ 0, 0.02 * previousColumnHeight };
         bias += biasDist(engine);
     }
 
@@ -55,10 +64,4 @@ namespace NeuralNetwork {
         return result;
     }
 
-    Neuron::Neuron(size_t previousColumnHeight){
-        for (auto i = 0; i != previousColumnHeight; ++i)
-            weights.push_back(1.0 * rand() / RAND_MAX );
-
-        bias = 1.0 * rand() / RAND_MAX * previousColumnHeight;
-    }
 }

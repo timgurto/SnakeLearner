@@ -17,6 +17,8 @@ namespace NeuralNetwork {
         Bias bias{ 0 };
         Weights weights;
 
+        size_t previousColumnHeight{ 0 };
+
         mutable Value output;
         void calculate(const Column &input) const;
         void calculate(const Values &input) const; // For the first column of neurons

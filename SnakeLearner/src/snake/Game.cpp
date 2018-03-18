@@ -73,9 +73,29 @@ namespace SnakeGame {
 
     NeuralNetwork::Values Game::compileGameStateIntoInputVector() const {
         auto ret = NeuralNetwork::Values{};
+
+        static const double
+            NOTHING = 0.0,
+            BODY = 0.33,
+            HEAD = 0.67,
+            EGG = 1.0;
+
         for (auto i = 0; i != 400; ++i)
-            ret.push_back(0.5);
+            ret.push_back(NOTHING);
+
+        ret[to1D(_egg)] = EGG;
+        ret[to1D(_snake.head())] = HEAD;
+
+        auto it = _snake.body().begin();
+        ++it;
+        for (; it != _snake.body().end(); ++it)
+            ret[to1D(*it)] = BODY;
+
         return ret;
+    }
+
+    size_t Game::to1D(Coords coords) {
+        return coords.y * GRID_SIZE + coords.x;
     }
 
     bool Game::isGameOver() const {

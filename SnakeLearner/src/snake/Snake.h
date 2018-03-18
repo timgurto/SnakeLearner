@@ -17,6 +17,7 @@ namespace SnakeGame {
         bool hasCollidedWithSelf() const;
         bool isInBounds() const;
         Coords head() const { return _body.front(); }
+        const std::list<Coords> &body() const { return _body; }
 
     private:
         std::list<Coords> _body; // front = head

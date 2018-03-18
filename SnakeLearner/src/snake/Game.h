@@ -29,6 +29,9 @@ namespace SnakeGame {
 
         Coords _egg{ 5, 5 };
 
+        int _numTurns{ 0 };
+        static const int MAX_TURNS = 10000;
+
         const NeuralNetwork::Network * _network{ nullptr };
         NeuralNetwork::Values compileGameStateIntoInputVector() const;
         static size_t to1D(Coords coords);

@@ -104,6 +104,8 @@ namespace SnakeGame {
             return true;
         if (!_snake.isInBounds())
             return true;
+        if (_numTurns >= MAX_TURNS)
+            return true;
         return false;
     }
 

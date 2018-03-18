@@ -5,12 +5,15 @@ struct SDL_Window;
 
 #include "Snake.h"
 #include "SnakeGame.h"
+#include "../Optional.h"
+#include "../neural-network/Network.h"
 
 namespace SnakeGame {
 
     class Game {
     public:
         static Game RandomGame();
+        static Game NetworkGame(const NeuralNetwork::Network &network);
         ~Game();
 
         void loop();
@@ -20,21 +23,23 @@ namespace SnakeGame {
         int score() const { return _score; }
 
     private:
-        using GetCommandFunction = Command(*)();
+        using GetCommandFunction = Command(*)(const Game&);
         Game(GetCommandFunction getCommandFunction);
 
         Snake _snake;
         int _score{ 0 };
 
         Coords _egg{ 5, 5 };
+
+        Optional<const NeuralNetwork::Network *> _network;
         
         bool isGameOver() const;
 
         GetCommandFunction _getNextCommand { nullptr };
 
-        static Command getRandomCommand();
-        static Command getCommandFromUser();
-        static Command getCommandFromNetwork();
+        static Command getRandomCommand(const Game &game);
+        static Command getCommandFromUser(const Game &game);
+        static Command getCommandFromNetwork(const Game &game);
 
         SDL_Window *_window{ nullptr };
         SDL_Renderer *_renderer{ nullptr };

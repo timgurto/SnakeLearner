@@ -1,7 +1,10 @@
+#include <cassert>
+
 #include <SDL.h>
 
 #include "Game.h"
 #include "SnakeGame.h"
+#include "../neural-network/Network.h"
 
 namespace SnakeGame {
 
@@ -19,6 +22,12 @@ namespace SnakeGame {
         return Game(&getRandomCommand);
     }
 
+    Game Game::NetworkGame(const NeuralNetwork::Network &network) {
+        auto game = Game(&getCommandFromNetwork);
+        game._network = &network;
+        return game;
+    }
+
     Game::~Game() {
         SDL_DestroyRenderer(_renderer);
         SDL_DestroyWindow(_window);
@@ -29,7 +38,7 @@ namespace SnakeGame {
         while (true) {
             render();
 
-            auto command = _getNextCommand();
+            auto command = _getNextCommand(*this);
             update(command);
 
             if (isGameOver())
@@ -80,13 +89,37 @@ namespace SnakeGame {
         return false;
     }
 
-    Command Game::getRandomCommand() {
+    Command Game::getRandomCommand(const Game &) {
         auto cmd = rand() % 4;
         switch (cmd) {
-        case 0: return UP;
-        case 1: return DOWN;
-        case 2: return LEFT;
-        case 3: return RIGHT;
+            case 0: return UP;
+            case 1: return DOWN;
+            case 2: return LEFT;
+            case 3: return RIGHT;
+        }
+
+        return UP;
+    }
+    Command Game::getCommandFromNetwork(const Game &game) {
+        assert(game._network.hasValue());
+        auto &network = *game._network.value();
+        auto output = network.calculate({});
+        assert(output.size() == 4);
+
+        auto maxIndex = 0;
+        auto maxVal = NeuralNetwork::Value{ 0 };
+        for (auto i = 1; i != output.size(); ++i) {
+            if (output[i] > maxVal) {
+                maxVal = output[i];
+                maxIndex = i;
+            }
+        }
+
+        switch (maxIndex) {
+            case 0: return UP;
+            case 1: return DOWN;
+            case 2: return LEFT;
+            case 3: return RIGHT;
         }
 
         return UP;

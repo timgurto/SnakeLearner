@@ -17,7 +17,7 @@ namespace SnakeGame {
         int x{ 0 };
         int y{ 0 };
 
-        Coords(int x_, int y_) : x(x_), y(y_) {}
+        Coords(int x_ = 0, int y_ = 0) : x(x_), y(y_) {}
 
         bool operator==(const Coords &rhs) const {
             return x == rhs.x && y == rhs.y;

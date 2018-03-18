@@ -44,8 +44,16 @@ namespace SnakeGame {
     void Game::update(Command command) {
         _snake.move(command, _egg);
 
-        if (_snake.head() == _egg)
+        if (_snake.head() == _egg) {
             _score += 1000;
+
+            auto newEggLoc = Coords{};
+            do {
+                newEggLoc.x = rand() % GRID_SIZE;
+                newEggLoc.y = rand() % GRID_SIZE;
+            } while (newEggLoc == _egg);
+            _egg = newEggLoc;
+        }
     }
 
     void Game::render() {

@@ -15,7 +15,7 @@ int main() {
     window = SDL_CreateWindow("Snake", 10, 20, WIN_SIZE, WIN_SIZE, SDL_WINDOW_SHOWN);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    static const int POPULATION_SIZE = 1000;
+    static const int POPULATION_SIZE = 10000;
 
     // Create first generation randomly
     auto generation = 1;

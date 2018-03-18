@@ -14,15 +14,15 @@ namespace SnakeGame {
     }
 
     void Snake::move(Command command) {
-        auto newFront = _body.front();
+        auto newHead = _body.front();
         switch (command) {
-        case UP: --newFront.y; break;
-        case DOWN: ++newFront.y; break;
-        case LEFT: --newFront.x; break;
-        case RIGHT: ++newFront.x; break;
+        case UP: --newHead.y; break;
+        case DOWN: ++newHead.y; break;
+        case LEFT: --newHead.x; break;
+        case RIGHT: ++newHead.x; break;
         }
         _body.pop_back();
-        _body.push_front(newFront);
+        _body.push_front(newHead);
     }
 
     void Snake::render(SDL_Renderer * renderer) {
@@ -35,6 +35,17 @@ namespace SnakeGame {
             SDL_SetRenderDrawColor(renderer, 91, 47, 25, 255);
             SDL_RenderFillRect(renderer, &segmentRect);
         }
+    }
+
+    bool Snake::hasCollidedWithSelf() const {
+        const auto &head = _body.front();
+        auto it = _body.begin();
+        ++it;
+        for (; it != _body.end(); ++it) {
+            if (*it == head)
+                return true;
+        }
+        return false;
     }
 
 }

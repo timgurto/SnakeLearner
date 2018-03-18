@@ -1,9 +1,11 @@
 #include <iostream>
 
-#include "snake/SnakeGame.h"
+#include "snake/Game.h"
 
 int main() {
 
-    auto score = SnakeGame::playAsHuman();
-    std::cout << score << std::endl;
+    auto game = SnakeGame::Game::RandomGame();
+    game.loop();
+
+    std::cout << game.score() << std::endl;
 }

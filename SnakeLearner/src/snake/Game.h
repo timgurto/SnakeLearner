@@ -14,15 +14,19 @@ namespace SnakeGame {
         ~Game();
 
         void loop();
-
         void update(Command command);
         void render();
+
+        int score() const { return _score; }
 
     private:
         using GetCommandFunction = Command(*)();
         Game(GetCommandFunction getCommandFunction);
 
         Snake _snake;
+        int _score{ 0 };
+        
+        bool isGameOver() const;
 
         GetCommandFunction _getNextCommand { nullptr };
 

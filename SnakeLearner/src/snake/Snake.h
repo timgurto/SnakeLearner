@@ -14,10 +14,10 @@ namespace SnakeGame {
 
         void move(Command command);
         void render(SDL_Renderer *renderer);
+        bool hasCollidedWithSelf() const;
 
     private:
         std::list<Coords> _body; // front = head
-
     };
 
 }

@@ -32,6 +32,11 @@ namespace SnakeGame {
             auto command = _getNextCommand();
             update(command);
 
+            if (isGameOver())
+                break;
+
+            ++_score;
+
             SDL_Delay(500);
         }
     }
@@ -47,6 +52,12 @@ namespace SnakeGame {
         _snake.render(_renderer);
 
         SDL_RenderPresent(_renderer);
+    }
+
+    bool Game::isGameOver() const {
+        if (_snake.hasCollidedWithSelf())
+            return true;
+        return false;
     }
 
     Command Game::getRandomCommand() {

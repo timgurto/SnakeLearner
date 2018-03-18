@@ -24,9 +24,6 @@
     <ClCompile Include="src\snake\Snake.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\snake\SnakeGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\snake\Game.h">

@@ -44,7 +44,7 @@ int main() {
         std::sort(population.rbegin(), population.rend());
 
         // Cull bottom 75%
-        auto newSize = population.size() * 3 / 4;
+        auto newSize = population.size() * 1 / 4;
         population.resize(newSize);
 
         // Mutate each 3 times

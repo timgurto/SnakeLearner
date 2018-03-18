@@ -15,6 +15,7 @@ namespace SnakeGame {
         void move(Command command);
         void render(SDL_Renderer *renderer);
         bool hasCollidedWithSelf() const;
+        bool isInBounds() const;
 
     private:
         std::list<Coords> _body; // front = head

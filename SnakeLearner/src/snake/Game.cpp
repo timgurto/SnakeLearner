@@ -37,7 +37,7 @@ namespace SnakeGame {
 
             ++_score;
 
-            SDL_Delay(500);
+            SDL_Delay(50);
         }
     }
 
@@ -56,6 +56,8 @@ namespace SnakeGame {
 
     bool Game::isGameOver() const {
         if (_snake.hasCollidedWithSelf())
+            return true;
+        if (!_snake.isInBounds())
             return true;
         return false;
     }

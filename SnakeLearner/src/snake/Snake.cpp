@@ -48,4 +48,14 @@ namespace SnakeGame {
         return false;
     }
 
+    bool Snake::isInBounds() const {
+        const auto &head = _body.front();
+        if (head.x < 0) return false;
+        if (head.y < 0) return false;
+        if (head.x >= GRID_SIZE) return false;
+        if (head.y >= GRID_SIZE) return false;
+
+        return true;
+    }
+
 }

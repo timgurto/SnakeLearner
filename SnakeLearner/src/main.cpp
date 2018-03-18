@@ -50,10 +50,11 @@ int main() {
             << " worst=" << minScore << std::endl;
 
         // Sort
+        std::random_shuffle(population.begin(), population.end());
         std::sort(population.rbegin(), population.rend());
 
         // Cull bottom 75%
-        auto newSize = population.size() * 1 / 4;
+        auto newSize = population.size() / 4;
         population.resize(newSize);
 
         // Mutate each 3 times

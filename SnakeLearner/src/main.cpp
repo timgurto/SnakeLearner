@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "snake/Snake.h"
+#include "snake/Game.h"
 
 int main() {
     auto score = Snake::playAsHuman();

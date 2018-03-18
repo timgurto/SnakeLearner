@@ -13,7 +13,7 @@ namespace SnakeGame {
             _body.push_back({ STARTING_POS.x - i, STARTING_POS.y });
     }
 
-    void Snake::move(Command command) {
+    void Snake::move(Command command, Coords egg) {
         auto newHead = _body.front();
         switch (command) {
         case UP: --newHead.y; break;
@@ -21,7 +21,8 @@ namespace SnakeGame {
         case LEFT: --newHead.x; break;
         case RIGHT: ++newHead.x; break;
         }
-        _body.pop_back();
+        if (newHead != egg)
+            _body.pop_back();
         _body.push_front(newHead);
     }
 

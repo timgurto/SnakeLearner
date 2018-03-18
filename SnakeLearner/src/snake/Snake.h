@@ -12,10 +12,11 @@ namespace SnakeGame {
     public:
         Snake();
 
-        void move(Command command);
+        void move(Command command, Coords egg);
         void render(SDL_Renderer *renderer);
         bool hasCollidedWithSelf() const;
         bool isInBounds() const;
+        Coords head() const { return _body.front(); }
 
     private:
         std::list<Coords> _body; // front = head

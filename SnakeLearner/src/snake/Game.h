@@ -25,6 +25,8 @@ namespace SnakeGame {
 
         Snake _snake;
         int _score{ 0 };
+
+        Coords _egg{ 5, 5 };
         
         bool isGameOver() const;
 

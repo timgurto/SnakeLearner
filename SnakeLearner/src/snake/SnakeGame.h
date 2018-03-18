@@ -22,6 +22,10 @@ namespace SnakeGame {
         bool operator==(const Coords &rhs) const {
             return x == rhs.x && y == rhs.y;
         }
+
+        bool operator!=(const Coords &rhs) const {
+            return ! (*this == rhs);
+        }
     };
 
 }

@@ -37,12 +37,15 @@ namespace SnakeGame {
 
             ++_score;
 
-            SDL_Delay(50);
+            SDL_Delay(200);
         }
     }
 
     void Game::update(Command command) {
-        _snake.move(command);
+        _snake.move(command, _egg);
+
+        if (_snake.head() == _egg)
+            _score += 1000;
     }
 
     void Game::render() {
@@ -50,6 +53,13 @@ namespace SnakeGame {
         SDL_RenderClear(_renderer);
 
         _snake.render(_renderer);
+
+        SDL_SetRenderDrawColor(_renderer, 249, 241, 199, 255);
+        auto eggRect = SDL_Rect{};
+        eggRect.x = _egg.x * CELL_SIZE + 1;
+        eggRect.y = _egg.y * CELL_SIZE + 1;
+        eggRect.w = eggRect.h = CELL_SIZE - 2;
+        SDL_RenderFillRect(_renderer, &eggRect);
 
         SDL_RenderPresent(_renderer);
     }

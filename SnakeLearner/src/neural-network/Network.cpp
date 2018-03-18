@@ -12,7 +12,9 @@ namespace NeuralNetwork {
         auto previousColumnSize = *it;
         ++it;
         for (; it != layers.end(); ++it) {
-            auto thisColumn = Column{ *it, Neuron{ previousColumnSize } };
+            auto thisColumn = Column{};
+            for (auto i = 0; i != *it; ++i)
+                thisColumn.push_back(Neuron{ previousColumnSize });
             _columns.push_back(thisColumn);
 
             previousColumnSize = *it;
